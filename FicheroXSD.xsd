@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> 
+  <!-- Documentacion del esquema --> 
+  <xs:annotation> 
+    <xs:documentation xml:lang ="es-es"> 
+      Materiales para formación e-Learning 
+      <modulo>Lenguajes de marcas y sistemas de gestión de información.</modulo> 
+      <fecha_creacion> 2011</fecha_creacion> 
+      <autor> Nuky La Bruji</autor> 
+    </xs:documentation> 
+  </xs:annotation>
+  <!-- Definicion del vocabulario --> 
+  <xs:element name="clase"> 
+    <xs:complexType> 
+      <xs:sequence> 
+        <xs:element ref="alumnos"/> 
+        <xs:element ref="asignaturas"/> 
+        <xs:element ref="notas"/> 
+      </xs:sequence> 
+    </xs:complexType> 
+  </xs:element> 
+  <!-- Tabla alumnos --> 
+  <xs:element name="alumnos"> 
+    <xs:complexType> 
+      <xs:sequence> 
+        <xs:element maxOccurs="unbounded" ref="alumno"/> 
+      </xs:sequence> 
+    </xs:complexType> 
+  </xs:element> 
+  <!-- Definicion de cada fila -->
+  <xs:element name="alumno"> 
+    <xs:complexType> 
+      <xs:sequence> 
+        <xs:element ref="apenom"/> 
+        <xs:element ref="direc"/> 
+        <xs:element ref="pobla"/> 
+        <xs:element ref="telef"/> 
+      </xs:sequence> 
+      <xs:attribute name="cod" use="required" type="xs:ID"/> 
+    </xs:complexType> 
+  </xs:element> 
+  <!-- Definicion de cada columna --> 
+  <xs:element name="apenom"> 
+    <xs:simpleType>
+     <xs:restriction base="xs:string"> 
+        <xs:maxLength value="30"></xs:maxLength> 
+      </xs:restriction> 
+    </xs:simpleType> 
+  </xs:element> 
+  <xs:element name="direc"> 
+    <xs:simpleType> 
+      <xs:restriction base="xs:string"> 
+        <xs:maxLength value="30"></xs:maxLength> 
+      </xs:restriction> 
+    </xs:simpleType> 
+  </xs:element> 
+  <xs:element name="pobla"> 
+    <xs:simpleType> 
+      <xs:restriction base="xs:string"> 
+        <xs:maxLength value="15"></xs:maxLength> 
+      </xs:restriction> 
+    </xs:simpleType> 
+  </xs:element>
+  <xs:element name="telef"> 
+  <xs:simpleType> 
+    <xs:restriction base="xs:string"> 
+      <xs:maxLength value="10"></xs:maxLength> 
+    </xs:restriction> 
+  </xs:simpleType> 
+  </xs:element> 
+  <!-- Tabla asignaturas --> 
+  <xs:element name="asignaturas"> 
+    <xs:complexType> 
+      <xs:sequence> 
+        <xs:element maxOccurs="unbounded" ref="asignatura"/>       </xs:sequence> 
+    </xs:complexType> 
+  </xs:element>
+  <!-- Definicion de cada fila --> 
+  <xs:element name="asignatura"> 
+    <xs:complexType> 
+      <!-- Definicion de cada columna --> 
+      <xs:attribute name="cod" use="required" type="xs:ID"/>       <xs:attribute name="nombre" use="required"> 
+        <xs:simpleType> 
+          <xs:restriction base="xs:string"> 
+            <xs:maxLength value="5"></xs:maxLength> 
+          </xs:restriction> 
+        </xs:simpleType> 
+      </xs:attribute> 
+    </xs:complexType> 
+  </xs:element>
+  <!-- Tabla notas -->
+  <xs:element name="notas">
+  <xs:complexType> 
+      <xs:sequence> 
+        <xs:element maxOccurs="unbounded" ref="nota"/> 
+      </xs:sequence> 
+    </xs:complexType> 
+  </xs:element> 
+  <!-- Definicion de cada fila --> 
+  <xs:element name="nota"> 
+    <xs:complexType> 
+      <!-- Definicion de cada columna --> 
+      <xs:attribute name="alum" use="required" type="xs:IDREF"/>      
+       <xs:attribute name="asig" use="required" type="xs:IDREF"/>      
+        <xs:attribute name="calificacion"> 
+        <xs:simpleType> 
+          <xs:restriction base="xs:decimal"> 
+            <xs:totalDigits value="3"/> 
+            <xs:fractionDigits value="1"/> 
+          </xs:restriction> 
+        </xs:simpleType> 
+      </xs:attribute> 
+    </xs:complexType> 
+  </xs:element> 
+</xs:schema>

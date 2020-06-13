@@ -1,0 +1,1 @@
+count(doc("DocumentoXML.xml")//asignatura)
